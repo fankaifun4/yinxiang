@@ -1,0 +1,4 @@
+<!--components/loader/index.wxml-->
+<view class='loading'>
+    <view class="loader"></view><text class='news-num'>{{ text }}</text>
+</view>

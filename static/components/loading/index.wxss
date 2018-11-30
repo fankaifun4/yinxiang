@@ -1,0 +1,84 @@
+/* components/loading/index.wxss */
+.zhezao{
+    position:fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    background:rgba(0,0,0,.5);
+    z-index: 800;
+    display: flex;
+    justify-content: center;
+}
+.wraps{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:relative;
+}
+.k-ball-holder3 {
+	width:90rpx;
+    height:90rpx;
+}
+.text{
+    font-size:30rpx;
+    color:#fff;
+}
+.k-ball7a {
+	border:0;
+	margin:0;
+	width:32rpx;
+	height:32rpx;
+	position:absolute;
+	border-radius:50%;
+	animation:k-loadingO 2s ease infinite;
+	background:#19A68C;
+	animation-delay:-1.5s;
+}
+
+.k-ball7b {
+	border:0;
+	margin:0;
+	width:32rpx;
+	height:32rpx;
+	position:absolute;
+	border-radius:50%;
+	animation:k-loadingO 2s ease infinite;
+	background:#F63D3A;
+	animation-delay:-1s;
+}
+.k-ball7c {
+	border:0;
+	margin:0;
+	width:32rpx;
+	height:32rpx;
+	position:absolute;
+	border-radius:50%;
+	animation:k-loadingO 2s ease infinite;
+	background:#FDA543;
+	animation-delay:-0.5s;
+}
+.k-ball7d {
+	border:0;
+	margin:0;
+	width:32rpx;
+	height:32rpx;
+	position:absolute;
+	border-radius:50%;
+	animation:k-loadingO 2s ease infinite;
+	background:#193B48;
+}
+@keyframes k-loadingO {
+	0%,100% {
+        transform:translate(0)
+    }
+    25% {
+        transform:translate(160%)
+    }
+    50% {
+        transform:translate(160%,160%)
+    }
+    75% {
+        transform:translate(0,160%)
+    }
+}

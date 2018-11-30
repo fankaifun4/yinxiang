@@ -1,0 +1,15 @@
+<!--components/areaList/index.wxml-->
+<view>
+    <picker bindchange="changeFullArea"
+            mode="multiSelector"
+            value="{{fullIndex}}"
+            range-key='name'
+            range="{{fullAreaPicker}}"
+            bindcolumnchange="changeColum">
+        <view class="picker-class">
+            {{ address.province.name}}
+            {{ address.city.name}}
+            {{ address.county.name}}
+        </view>
+    </picker>
+</view>

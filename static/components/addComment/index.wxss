@@ -1,0 +1,72 @@
+/* components/addComment/index.wxss */
+.comment-input{
+    position: fixed;
+    z-index: 1000;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding:15rpx;
+    visibility: hidden;
+}
+.show-comment{
+    visibility:visible;
+}
+.comment-mask{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    opacity: 0;
+    visibility: hidden;
+    background:#000;
+    transition: all .4s;
+}
+.comment-mask.showmask{
+    opacity: .6;
+    visibility: visible;
+}
+
+.comment-view{
+    position: absolute;
+    display: flex;
+    align-items: flex-start;
+    padding:32rpx 28rpx;
+    background: #fff;
+    z-index: 100;
+    top:1600rpx;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: all .4s;
+}
+.comment-view.isshow{
+    top:250rpx;
+}
+
+.comment-view > textarea{
+    background: #fff;
+    padding: 15rpx;
+    flex: 1;
+    margin-right: 10rpx;
+    border:1px solid #e5e5e5;
+    box-sizing: border-box;
+    font-size: 28rpx;
+    height:100rpx;
+}
+.send{
+    background: #FF5739;
+    color:#fff;
+    height:52rpx;
+    line-height: 52rpx;
+    border-radius: 4rpx;
+    font-size: 30rpx;
+}
+.secret-jurisdiction{
+    font-size: 26rpx;
+    color:#999;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}

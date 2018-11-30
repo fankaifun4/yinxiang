@@ -1,0 +1,13 @@
+<!--components/loading/index.wxml-->
+<view class="zhezao">
+    <cover-view style="position: absolute; width:100%; height: 100%;"></cover-view>
+    <view class="wraps">
+        <view class="k-ball-holder3">
+            <view class="k-ball7a"></view>
+            <view class="k-ball7b"></view>
+            <view class="k-ball7c"></view>
+            <view class="k-ball7d"></view>
+        </view>
+    </view>
+</view>
+

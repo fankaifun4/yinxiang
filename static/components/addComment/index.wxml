@@ -1,0 +1,13 @@
+<!--components/addComment/index.wxml-->
+<view class="comment-input {{addCommentMask?'show-comment':''}}" >
+    <view bindtap="closeCommentMask" class="comment-mask {{addCommentMask?'showmask':''}}"></view>
+    <view class="comment-view {{addCommentMask?'isshow':''}}">
+            <textarea
+                    placeholder="请输入内容"
+                    maxlength="200"
+                    fixed="true"
+                    selection-end
+                    bindinput="setCommentText" />
+        <button class="send" bindtap="Addcomment">评论</button>
+    </view>
+</view>
