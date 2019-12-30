@@ -136,40 +136,50 @@
 </style>
 <template>
   <div class="wrap">
-    <swiper class="swiper-container" previous-margin="50rpx" next-margin="50rpx">
-      <block v-for="(item,index) in list" :key="key">
-        <swiper-item class="swiper-item">
-          <div class="card-container">
-            <p-card :cardinfo="item" :index="index" @collectChange="collectChange"></p-card>
-            <div class="card-body">
-              <div class="card-body-tag">
-                <div class="tag fs-b">标签</div>
-                <!--<img class="tips" src="/static/images/tips@3x.png" alt=""  mode="widthFix" >-->
-                <div class="tips-lib">
-                  <div class="t-x">支持热度：</div>
-                  <div class="t-p">10+ <img src="/static/images/huiq@3x.png" alt="" mode="aspectFit"></div>
-                  <div class="t-p">100+ <img src="/static/images/fq@3x.png" alt="" mode="aspectFit"></div>
-                  <div class="t-p">1K+ <img src="/static/images/lanq@3x.png" alt="" mode="aspectFit"></div>
-                  <div class="t-p">1W+ <img src="/static/images/hq@3x.png" alt="" mode="aspectFit"></div>
-                </div>
-              </div>
-              <scroll-view scroll-y class="tag-list-wrap">
-                <div class="tag-scroll">
-                  <block v-for="(tag,key) in item.tags" :key="key">
-                    <tag :name="tag.name" :live="tag.live"></tag>
-                  </block>
-                </div>
-              </scroll-view>
-              <div class="card-body-summary">
-                <div class="summary">简介</div>
-                <div class="summary-text" :class="{empty:item.describe.length==0}" >{{item.describe.length>0?item.describe:'主人还没留下任何描述哦~'}}</div>
-              </div>
-            </div>
-          </div>
-        </swiper-item>
-      </block>
-    </swiper>
-    <div class="bt-after">
+    <!--<swiper class="swiper-container" previous-margin="50rpx" next-margin="50rpx">-->
+      <!--<block v-for="(item,index) in list" :key="key">-->
+        <!--<swiper-item class="swiper-item">-->
+          <!--<div class="card-container">-->
+            <!--<p-card :cardinfo="item" :index="index" @collectChange="collectChange"></p-card>-->
+            <!--<div class="card-body">-->
+              <!--<div class="card-body-tag">-->
+                <!--<div class="tag fs-b">标签</div>-->
+                <!--&lt;!&ndash;<img class="tips" src="/static/images/tips@3x.png" alt=""  mode="widthFix" >&ndash;&gt;-->
+                <!--<div class="tips-lib">-->
+                  <!--<div class="t-x">支持热度：</div>-->
+                  <!--<div class="t-p">10+ <img src="/static/images/huiq@3x.png" alt="" mode="aspectFit"></div>-->
+                  <!--<div class="t-p">100+ <img src="/static/images/fq@3x.png" alt="" mode="aspectFit"></div>-->
+                  <!--<div class="t-p">1K+ <img src="/static/images/lanq@3x.png" alt="" mode="aspectFit"></div>-->
+                  <!--<div class="t-p">1W+ <img src="/static/images/hq@3x.png" alt="" mode="aspectFit"></div>-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<scroll-view scroll-y class="tag-list-wrap">-->
+                <!--<div class="tag-scroll">-->
+                  <!--<block v-for="(tag,key) in item.tags" :key="key">-->
+                    <!--<tag :name="tag.name" :live="tag.live"></tag>-->
+                  <!--</block>-->
+                <!--</div>-->
+              <!--</scroll-view>-->
+              <!--<div class="card-body-summary">-->
+                <!--<div class="summary">简介</div>-->
+                <!--<div class="summary-text" :class="{empty:item.describe.length==0}" >{{item.describe.length>0?item.describe:'主人还没留下任何描述哦~'}}</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</swiper-item>-->
+      <!--</block>-->
+    <!--</swiper>-->
+    <camera
+      mode="scanCode"
+      device-position="back"
+      flash="off"
+      binderror="error"
+      bindscancode="takeCode"
+      style="width: 100%; height: 300px;"
+      scan-area="[0,0,200, 200]"
+    ></camera>
+    <button type="primary" bindtap="takePhoto">拍照</button>
+    <div class="bt-after" @click="getScan">
       <div>附近</div>
       <div class="bt-avart-wrap">
         <img src="/static/images/1@3x.png" alt="" mode="widthFix">
@@ -254,7 +264,9 @@
             collect: 1,
             avart: 'https://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=c926ce42a1345982d187edc06d9d5ac8/ac6eddc451da81cb6720d9fb5e66d016082431c5.jpg'
           }
-        ]
+        ],
+        isshow:false,
+        src:''
       }
     },
     components: {
@@ -268,6 +280,28 @@
         } else {
           this.list[data.index].collect = 1
         }
+      },
+      getScan(){
+        wx.scanCode({
+          scanType:['barCode'],
+          success:function(res){
+            let scan = res.result
+          }
+        })
+      },
+      takePhoto(){
+        const ctx = wx.createCameraContext()
+        ctx.takePhoto({
+          quality: 'high',
+          success: (res) => {
+            this.setData({
+              src: res.tempImagePath
+            })
+          }
+        })
+      },
+      takeCode(res){
+        console.log(res)
       }
     },
     created () {

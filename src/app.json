@@ -4,6 +4,11 @@
     "pages/logs/main",
     "pages/counter/main"
   ],
+  "permission": {
+    "scope.camera": {
+      "desc": "asdsasd"
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
